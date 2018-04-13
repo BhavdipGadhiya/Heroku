@@ -14,11 +14,11 @@ app.post('/update', function(req, res) {
         // watch for any connect issues
         if (err) console.log(err);
         conn.query(
-            'UPDATE salesforce.EvenLogFile SET LogFile = $1 WHERE Id = $2',
+            'UPDATE salesforce.EventLogFile SET LogFile = $1 WHERE Id = $2',
             [req.body.LogFile.trim()],
             function(err, result) {
                 if (err != null || result.rowCount == 0) {
-                  conn.query('INSERT INTO salesforce.EvenLogFile (LogFile, Id) VALUES ($1, $2)',
+                  conn.query('INSERT INTO salesforce.EventLogFile (LogFile, Id) VALUES ($1, $2)',
                   [req.body.LogFile.trim()],
                   function(err, result) {
                     done();
